@@ -16,7 +16,12 @@ async function load() {
     try {
         const employees = [];
 
+        // prompt manager
+        const { name, id, email, imageUrl, officeNumber } = await promptManager();
+        // place manager into empty array
+        employees.push(new Manager(name, id, email, imageUrl,officeNumber));
 
+        
     }
 }
 
