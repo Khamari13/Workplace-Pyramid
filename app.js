@@ -136,9 +136,31 @@ async function promptStaffMembers() {
                         message: "Enter the manager's image url:",
                         name: "imageUrl"
                     }
-                ])
+                ]).then(function({ name, id, email, imageUrl, school }) {
+                    staffMembers.push(new Intern(name, id, email, imageUrl, school));
+                    return promptStaffMembers();
+                })
+        } else {
+            return staffMembers;
         }
+    } catch (err) {
+        console.log(err);
     }
+}
+
+// prompt for member role
+function promptMemberRole() {
+    return inquirer
+        .prompt({
+            type: "list",
+            message: "What type of staff member would you like to add next?",
+            name: "role",
+            choices: [
+                "Engineer",
+                "Intern",
+                "No more members to add"
+            ]
+        })
 }
 
 // Write code to use inquirer to gather information about the development team members,
