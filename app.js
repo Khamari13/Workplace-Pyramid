@@ -17,9 +17,9 @@ async function load() {
         const employees = [];
 
         // prompt manager
-        const { name, id, email, imageUrl, officeNumber } = await promptManager();
+        const { name, id, email, officeNumber } = await promptManager();
         // place manager into empty array
-        employees.push(new Manager(name, id, email, imageUrl,officeNumber));
+        employees.push(new Manager(name, id, email, officeNumber));
 
         // prompt staff members
         const response = await promptStaffMembers();
@@ -27,14 +27,14 @@ async function load() {
 
         // generate and return a block of HTML
         const staff = await render(employees);
-        console.log(team);
+        console.log(staff);
 
-        fs.writeFile(outputPath, staff, function(err) {
-            if(err) {
-                console.log(err);
-            }
-            console.log("staff.html has been created")
-        });
+        // fs.writeFile(outputPath, staff, function(err) {
+        //     if(err) {
+        //         console.log(err);
+        //     }
+        //     console.log("staff.html has been created")
+        // });
     } catch (err) {
         console.log(err);
     }
@@ -63,12 +63,8 @@ function promptManager() {
                 type: "number",
                 message: "Enter the manager's office number:",
                 name: "officeNumber"
-            },
-            {
-                type: "input",
-                message: "Enter the manager's image url:",
-                name: "imageUrl"
             }
+        
         ])
 }
 // prompt for tyoe of staff member
@@ -98,14 +94,9 @@ async function promptStaffMembers() {
                         type: "input",
                         message: "Enter the engineer's github username:",
                         name: "github"
-                    },
-                    {
-                        type: "input",
-                        message: "Enter the engineer's image url:",
-                        name: "imageUrl"
                     }
-                ]).then(function ({ name, id, email, imageUrl, github }) {
-                    staffMembers.push(new Engineer(name, id, email, imageUrl, github));
+                ]).then(function ({ name, id, email, github }) {
+                    staffMembers.push(new Engineer(name, id, email, github));
                     return promptStaffMembers();
                 })
         } else if (role === "Intern") {
@@ -127,20 +118,21 @@ async function promptStaffMembers() {
                         name: "email"
                     },
                     {
-                        type: "number",
+                        type: "input",
                         message: "Enter the intern's school:",
                         name: "school"
-                    },
-                    {
-                        type: "input",
-                        message: "Enter the manager's image url:",
-                        name: "imageUrl"
                     }
-                ]).then(function({ name, id, email, imageUrl, school }) {
-                    staffMembers.push(new Intern(name, id, email, imageUrl, school));
+                ]).then(function({ name, id, email, school }) {
+                    staffMembers.push(new Intern(name, id, email, school));
                     return promptStaffMembers();
                 })
         } else {
+            fs.writeFile(outputPath, staffMembers, function(err) {
+                if(err) {
+                    console.log(err);
+                }
+                console.log("staff.html has been created")
+            });
             return staffMembers;
         }
     } catch (err) {
