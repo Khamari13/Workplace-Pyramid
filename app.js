@@ -104,6 +104,38 @@ async function promptStaffMembers() {
                         message: "Enter the engineer's image url:",
                         name: "imageUrl"
                     }
+                ]).then(function ({ name, id, email, imageUrl, github }) {
+                    staffMembers.push(new Engineer(name, id, email, imageUrl, github));
+                    return promptStaffMembers();
+                })
+        } else if (role === "Intern") {
+            return inquirer
+                .prompt([
+                    {
+                        type: "input",
+                        message: "Enter intern's name:",
+                        name: "name:"
+                    },
+                    {
+                        type: "number",
+                        message: "Enter the intern's ID:",
+                        name: "ID"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter the intern's email:",
+                        name: "email"
+                    },
+                    {
+                        type: "number",
+                        message: "Enter the intern's school:",
+                        name: "school"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter the manager's image url:",
+                        name: "imageUrl"
+                    }
                 ])
         }
     }
