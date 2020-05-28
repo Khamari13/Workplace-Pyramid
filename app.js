@@ -21,9 +21,26 @@ async function load() {
         // place manager into empty array
         employees.push(new Manager(name, id, email, imageUrl,officeNumber));
 
-        
+        // prompt staff members
+        const response = await promptStaffMembers();
+        employees.push(...response);
+
+        // generate and return a block of HTML
+        const staff = await render(employees);
+        console.log(team);
+
+        fs.writeFile(outputPath, staff, function(err) {
+            if(err) {
+                console.log(err);
+            }
+            console.log("staff.html has been created")
+        });
+    } catch (err) {
+        console.log(err);
     }
 }
+
+
 
 const questions = [
     {
