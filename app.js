@@ -71,7 +71,43 @@ function promptManager() {
             }
         ])
 }
-
+// prompt for tyoe of staff member
+const staffMembers = [];
+async function promptStaffMembers() {
+    try {
+        const { role } = await promptMemberRole();
+        if (role === "Engineer") {
+            return inquirer
+                .prompt([
+                    {
+                        type: "input",
+                        message: "Enter engineer's name:",
+                        name: "name:"
+                    },
+                    {
+                        type: "number",
+                        message: "Enter the engineer's ID:",
+                        name: "ID"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter the engineer's email:",
+                        name: "email"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter the engineer's github username:",
+                        name: "github"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter the engineer's image url:",
+                        name: "imageUrl"
+                    }
+                ])
+        }
+    }
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
