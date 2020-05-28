@@ -40,46 +40,36 @@ async function load() {
     }
 }
 
-
-
-const questions = [
-    {
-        type: "input",
-        name: "id",
-        message: "What is your work id?"
-
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is your email address?"
-
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "What is your name?"
-    },
-    {
-        type
-    }
-
-
-
-
-
-]
-
-inquirer.prompt(questions).then(data => {
-    switch (data) {
-        case "Engineer":
-            engineerQuestions()
-            break;
-    case "Intern":
-        internQuestions()
-        default:
-            break;
-    }
+// get info from inquirer about staff members
+function promptManager() {
+    return inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter manager's name:",
+                name: "name:"
+            },
+            {
+                type: "number",
+                message: "Enter the manager's ID:",
+                name: "ID"
+            },
+            {
+                type: "input",
+                message: "Enter the manager's email:",
+                name: "email"
+            },
+            {
+                type: "number",
+                message: "Enter the manager's office number:",
+                name: "officeNumber"
+            },
+            {
+                type: "input",
+                message: "Enter the manager's image url:",
+                name: "imageUrl"
+            }
+        ])
 }
 
 
