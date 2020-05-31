@@ -29,12 +29,13 @@ async function load() {
         const staff = await render(employees);
         console.log(staff);
 
-        // fs.writeFile(outputPath, staff, function(err) {
-        //     if(err) {
-        //         console.log(err);
-        //     }
-        //     console.log("staff.html has been created")
-        // });
+        fs.writeFile(outputPath, staff, function(err) {
+            if(err) {
+                console.log(err);
+            }
+            
+            console.log("staff.html has been created")
+        });
     } catch (err) {
         console.log(err);
     }
