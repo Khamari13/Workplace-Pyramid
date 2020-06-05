@@ -48,12 +48,12 @@ function promptManager() {
             {
                 type: "input",
                 message: "Enter manager's name:",
-                name: "name:"
+                name: "name"
             },
             {
                 type: "number",
                 message: "Enter the manager's ID:",
-                name: "ID"
+                name: "id"
             },
             {
                 type: "input",
@@ -79,12 +79,12 @@ async function promptStaffMembers() {
                     {
                         type: "input",
                         message: "Enter engineer's name:",
-                        name: "name:"
+                        name: "name"
                     },
                     {
                         type: "number",
                         message: "Enter the engineer's ID:",
-                        name: "ID"
+                        name: "id"
                     },
                     {
                         type: "input",
@@ -106,12 +106,12 @@ async function promptStaffMembers() {
                     {
                         type: "input",
                         message: "Enter intern's name:",
-                        name: "name:"
+                        name: "name"
                     },
                     {
                         type: "number",
                         message: "Enter the intern's ID:",
-                        name: "ID"
+                        name: "id"
                     },
                     {
                         type: "input",
